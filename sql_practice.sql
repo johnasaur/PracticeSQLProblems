@@ -1,94 +1,96 @@
 /*Introductory problems
 Question 1: Which shippers do we have?*/
-select * from shippers
+Select *
+From Shippers;
 
 --Question 2: Certain fields from Categories?
-select categoryname, description from categories
+Select CategoryName, Description
+From Categories;
 
 --Question 3: Sales representatives
-select firstname, lastname, hiredate
-from employees
-where title = 'sales representative'
+Select Firstname, Lastname, HireDate
+From Employees
+Where Title = 'Sales Representative';
 
---Question 4: Sales representatives in United States
-select firstname, lastname, hiredate
-from employees
-where title = 'sales representative' and country = 'USA' 
+--Question 4: Sales Representatives in United States
+Select FirstName, LastName, HireDate
+From Employees
+Where Title = 'Sales Representative' and Country = 'USA';
 
 --Question 5: Orders placed by specific EmployeeID
-select orderid, orderdate 
-from orders
-where employeeid = 5
+Select OrderId, OrderDate 
+From Orders
+Where EmployeeId = 5;
 
---Question 6: Suppliers and contacttitles
-select supplierid, contactname, contacttitle
-from suppliers
-where contacttitle != 'marketing manager'
+--Question 6: Suppliers and ContactTitles
+Select SupplierId, ContactName, ContactTitle
+From Suppliers
+Where ContactTitle != 'Marketing Manager';
 
 --Question 7: Products with "queso" in productname
-select productid, productname
-from products
-where productname like '%queso%'
+Select ProductId, ProductName
+From Products
+Where ProductName like '%queso%';
 
 --Question 8: Orders shipping to France or Belgium
-select orderid, customerid, shipcountry
-from orders
-where shipcountry = 'france' or shipcountry = 'belgium'
+select OrderId, CustomerId, ShipCountry
+From Orders
+Where ShipCountry = 'France' or ShipCountry = 'Belgium';
 
 --Question 9: Orders shipping to any country in Latin America
-select orderid, customerid, shipcountry
-from orders
-where shipcountry in ('brazil', 'mexico', 'argentina', 'venezuela')
+Select OrderId, CustomerId, ShipCountry
+From Orders
+Where ShipCountry in ('Brazil', 'Mexico', 'Argentina', 'Venezuela');
 
 --Question 10: Employees, in order of age (oldest employees first)
-select firstname, lastname, title, birthdate
-from employees
-order by birthdate asc
+Select FirstName, LastName, Title, BirthDate
+From Employees
+Order by BirthDate asc;
 
 --Question 11: Slowly only the date with a datetime field
-select firstname, lastname, title, convert(birthdate, date)
-from employees
-order by birthdate asc
+Select FirstName, LastName, Title, Convert(BirthDate, Date)
+From Employees
+Order by BirthDate asc;
 
 --Question 12: Employees full name
-select firstname, lastname, concat(firstname, ' ', lastname)
-from employees
+Select FirstName, LastName, Concat(FirstName, ' ', LastName)
+From Employees;
 
 --Question 13: OrderDetails amount per line item
-select orderid, productid, unitprice, quantity, (unitprice * quantity) as totalprice
-from orderdetails
+Select OrderId, ProductId, UnitPrice, Quantity, (UnitPrice * Quantity) as TotalPrice
+From OrderDetails;
 
 --Question 14: How many customers?
-select count(customerid) as totalcustomers
-from customers
+Select Count(CustomerId) as TotalCustomers
+From Customers;
 
 --Question 15: When was the first order?
-select min(orderdate) as firstorder
-from orders
+Select Min(OrderDate) as FirstOrder
+From Orders;
 
 --Question 16: Countries where there are customers
-select country
-from customers
-group by country
+Select Country
+From Customers
+Group by Country;
 
 --Question 17: Contact titles for customers
-select contacttitle, count(contacttitle) as totalcontacttitle
-from customers
-group by contacttitle
-order by count(contacttitle) desc
+Select ContactTitle, Count(ContactTitle) as TotalContactTitle
+From Customers
+Group by ContactTitle
+Order by Count(ContactTitle) desc;
 
 --Question 18: Products with associated supplier names
-select productid, productname, companyname as supplier
-from suppliers s
-join products p
-on s.supplierid = p.supplierid
+Select ProductId, ProductName, CompanyName as Supplier
+From Suppliers s
+Join Products p
+On s.SupplierId = p.SupplierId;
 
 --Question 19: Orders and the shipper that was used
-select orderid, orderdate, s.companyname as shipper
-from orders o
-join shippers s
-on s.shipperid = o.shipvia
-where orderid < 10270
+Select OrderId, OrderDate, s.CompanyName as Shipper
+From Orders o
+Join Shippers s
+On s.ShipperId = o.ShipVia
+Where OrderId < 10270;
 
 
 
