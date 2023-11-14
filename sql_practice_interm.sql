@@ -1,33 +1,33 @@
 /*Intermediate Problems
 Question 20: Categories, and the total products in each category*/
-select categoryname, count(productid) as totalproducts
-from categories c
-join products p
-on c.categoryid = p.categoryid
-group by categoryname
-order by totalproducts desc;
+Select CategoryName, Count(ProductId) as TotalProducts
+From Categories c
+Join Products p
+On c.CategoryId = p.CategoryId
+Group by CategoryName
+Order by TotalProducts Desc;
 
 -- Question 21: Total customers per country/city
-select country, city, count(customerid) as totalcustomers
-from customers
-group by city, country
-order by count(customerid) desc;
+Select Country, City, Count(CustomerId) as TotalCustomers
+From Customers
+Group by City, Country
+Order by Count(CustomerId) Desc;
 
 -- Question 22: Products that need reordering
-select productid, productname, unitsinstock, reorderlevel
-from products 
-where unitsinstock <= reorderlevel;
+Select ProductId, ProductName, UnitsInStock, ReorderLevel
+From Products 
+Where UnitsInStock <= ReorderLevel;
 
 -- Question 23: Products that need reordering, continued
-select productid, productname, unitsinstock, unitsonorder, reorderlevel, discontinued
-from products
-where unitsinstock + unitsonorder <= reorderlevel and discontinued = 0 
-order by productid;
+Select ProductId, ProductName, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued
+From Products
+Where UnitsInStock + UnitsOnOrder <= ReorderLevel and Discontinued = 0 
+Order by ProductId;
 
 -- Question 24: Customer list by region
-select customerid, companyname, region 
-from customers
-order by case when region is null then 1 else 0 end asc;
+Select CustomerId, CompanyName, Region 
+From Customers
+Order by Case When Region is NULL Then 1 Else 0 End Asc;
 
 -- Question 25: High freight charges
 Select ShipCountry, Avg(Freight) as AverageFreight
