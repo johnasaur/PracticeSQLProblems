@@ -78,13 +78,9 @@ On o.CustomerId = c.CustomerId
 Where o.CustomerId is NULL;
 
 -- Question 31: Customers with no orders for EmployeeId 4
-Select c.CustomerId as Customer, o.CustomerId as Orders_Customer
+Select c.CustomerId as CustomerOrder, o.CustomerId as Orders_Customer
 From Customers c
 Left Join Orders o
 On o.CustomerId = c.CustomerId and EmployeeId = 4
 Where o.CustomerId is NULL
 Order by c.CustomerId; 
-
-
-
-
