@@ -3,89 +3,89 @@ Question 1: Which shippers do we have?*/
 Select *
 From Shippers;
 
---Question 2: Certain fields from Categories?
+-- Question 2: Certain fields from Categories?
 Select CategoryName, Description
 From Categories;
 
---Question 3: Sales representatives
+-- Question 3: Sales representatives
 Select Firstname, Lastname, HireDate
 From Employees
 Where Title = 'Sales Representative';
 
---Question 4: Sales Representatives in United States
+-- Question 4: Sales Representatives in United States
 Select FirstName, LastName, HireDate
 From Employees
 Where Title = 'Sales Representative' and Country = 'USA';
 
---Question 5: Orders placed by specific EmployeeID
+-- Question 5: Orders placed by specific EmployeeID
 Select OrderId, OrderDate 
 From Orders
 Where EmployeeId = 5;
 
---Question 6: Suppliers and ContactTitles
+-- Question 6: Suppliers and ContactTitles
 Select SupplierId, ContactName, ContactTitle
 From Suppliers
 Where ContactTitle != 'Marketing Manager';
 
---Question 7: Products with "queso" in productname
+-- Question 7: Products with "queso" in productname
 Select ProductId, ProductName
 From Products
 Where ProductName like '%queso%';
 
---Question 8: Orders shipping to France or Belgium
+-- Question 8: Orders shipping to France or Belgium
 select OrderId, CustomerId, ShipCountry
 From Orders
 Where ShipCountry = 'France' or ShipCountry = 'Belgium';
 
---Question 9: Orders shipping to any country in Latin America
+-- Question 9: Orders shipping to any country in Latin America
 Select OrderId, CustomerId, ShipCountry
 From Orders
 Where ShipCountry in ('Brazil', 'Mexico', 'Argentina', 'Venezuela');
 
---Question 10: Employees, in order of age (oldest employees first)
+-- Question 10: Employees, in order of age (oldest employees first)
 Select FirstName, LastName, Title, BirthDate
 From Employees
 Order by BirthDate asc;
 
---Question 11: Slowly only the date with a datetime field
+-- Question 11: Slowly only the date with a datetime field
 Select FirstName, LastName, Title, Convert(BirthDate, Date)
 From Employees
 Order by BirthDate asc;
 
---Question 12: Employees full name
+-- Question 12: Employees full name
 Select FirstName, LastName, Concat(FirstName, ' ', LastName)
 From Employees;
 
---Question 13: OrderDetails amount per line item
+-- Question 13: OrderDetails amount per line item
 Select OrderId, ProductId, UnitPrice, Quantity, (UnitPrice * Quantity) as TotalPrice
 From OrderDetails;
 
---Question 14: How many customers?
+-- Question 14: How many customers?
 Select Count(CustomerId) as TotalCustomers
 From Customers;
 
---Question 15: When was the first order?
+-- Question 15: When was the first order?
 Select Min(OrderDate) as FirstOrder
 From Orders;
 
---Question 16: Countries where there are customers
+-- Question 16: Countries where there are customers
 Select Country
 From Customers
 Group by Country;
 
---Question 17: Contact titles for customers
+-- Question 17: Contact titles for customers
 Select ContactTitle, Count(ContactTitle) as TotalContactTitle
 From Customers
 Group by ContactTitle
 Order by Count(ContactTitle) desc;
 
---Question 18: Products with associated supplier names
+-- Question 18: Products with associated supplier names
 Select ProductId, ProductName, CompanyName as Supplier
 From Suppliers s
 Join Products p
 On s.SupplierId = p.SupplierId;
 
---Question 19: Orders and the shipper that was used
+-- Question 19: Orders and the shipper that was used
 Select OrderId, OrderDate, s.CompanyName as Shipper
 From Orders o
 Join Shippers s
